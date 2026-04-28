@@ -1546,26 +1546,6 @@ function importData() {
         alert('Hatalı kod!');
     }
 }
-
-function autoDosyaYedek() {
-    var veri = JSON.stringify({ db: db, kasa: { aylik: kasaAylik, arsiv: kasaArsiv }, tarih: new Date().toLocaleString('tr-TR') });
-    var blob = new Blob([veri], {type: 'application/json'});
-    var url = URL.createObjectURL(blob);
-    var a = document.createElement('a');
-    a.href = url;
-    a.download = 'vavenza_yedek.json';
-    a.click();
-    URL.revokeObjectURL(url);
-}
-
-window.addEventListener('beforeunload', function() {
-    var bugun = new Date().toISOString().split('T')[0];
-    var saat = new Date().toLocaleTimeString('tr-TR').replace(/:/g, '-');
-    var yedekAd = 'vYedek_' + bugun + '_' + saat;
-    var yedek = { db: db, kasa: { aylik: kasaAylik, arsiv: kasaArsiv }, tarih: bugun + ' ' + new Date().toLocaleTimeString('tr-TR') };
-    localStorage.setItem(yedekAd, JSON.stringify(yedek));
-    localStorage.setItem('vSonYedek', bugun + ' ' + new Date().toLocaleTimeString('tr-TR'));
-});
     </script>
 </body>
 </html>
